@@ -1,0 +1,17 @@
+.overlay-backdrop {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.overlay {
+  width: 60vw;
+  height: 60vh;
+  background-color: white;
+}
