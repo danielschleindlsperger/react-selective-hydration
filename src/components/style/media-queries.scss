@@ -1,0 +1,7 @@
+@import "./constants.scss";
+
+@mixin desktop {
+  @media (min-width: map-get($breakpoints, "sm")) {
+    @content;
+  }
+}

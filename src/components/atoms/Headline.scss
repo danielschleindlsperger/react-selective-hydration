@@ -1,0 +1,6 @@
+@import "../style/helpers.scss";
+
+.headline {
+  @include font-size(9);
+  @include sans-serif;
+}

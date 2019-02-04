@@ -1,0 +1,21 @@
+@import "./constants.scss";
+
+@function font-level($level: 0) {
+  @return map-get($font-sizes, $level);
+}
+
+@mixin font-size($level: 0) {
+  font-size: font-level($level) + px;
+}
+
+@mixin serif {
+  font-family: unquote(map-get($font-families, "serif"));
+}
+
+@mixin sans-serif {
+  font-family: unquote(map-get($font-families, "sans"));
+}
+
+@mixin text {
+  font-family: unquote(map-get($font-families, "text"));
+}

@@ -1,0 +1,65 @@
+@import "./constants.scss";
+
+@function space($level: 0) {
+  @return map-get($spacings, $level);
+}
+
+@mixin p($level) {
+  padding: space($level) + px;
+}
+
+@mixin pt($level) {
+  padding-top: space($level) + px;
+}
+
+@mixin pr($level) {
+  padding-right: space($level) + px;
+}
+
+@mixin pb($level) {
+  padding-bottom: space($level) + px;
+}
+
+@mixin pl($level) {
+  padding-left: space($level) + px;
+}
+
+@mixin px($level) {
+  padding-left: space($level) + px;
+  padding-right: space($level) + px;
+}
+
+@mixin py($level) {
+  padding-top: space($level) + px;
+  padding-bottom: space($level) + px;
+}
+
+@mixin m($level) {
+  margin: space($level) + px;
+}
+
+@mixin mt($level) {
+  margin-top: space($level) + px;
+}
+
+@mixin mr($level) {
+  margin-right: space($level) + px;
+}
+
+@mixin mb($level) {
+  margin-bottom: space($level) + px;
+}
+
+@mixin ml($level) {
+  margin-left: space($level) + px;
+}
+
+@mixin mx($level) {
+  margin-left: space($level) + px;
+  margin-right: space($level) + px;
+}
+
+@mixin my($level) {
+  margin-top: space($level) + px;
+  margin-bottom: space($level) + px;
+}
