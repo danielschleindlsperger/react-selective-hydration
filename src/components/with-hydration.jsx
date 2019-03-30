@@ -1,26 +1,17 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 
-export const withHydration = (WrappedComponent, token) => props => {
-  const [isServer, setIsServer] = useState(true)
-
-  // useEffect runs synchronously on first render. Therefore we can set the default `isServer` to true
-  // and run again on client to set to false.
-  useEffect(() => {
-    setIsServer(false)
-  }, [])
-
-  return (
-    <>
-      {isServer && (
-        <script
-          type="application/json"
-          data-hydration-data-id={token}
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(props),
-          }}
-        />
-      )}
-      <WrappedComponent data-hydration-id={token} {...props} />
-    </>
-  )
-}
+export const withHydration = (WrappedComponent, token) => props => (
+  <>
+    {/* This div will be used as the components parent to hydrate without side-effects */}
+    <div data-hydration-id={token}>
+      <WrappedComponent {...props} />
+    </div>
+    <script
+      type="application/json"
+      data-hydration-data-id={token}
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify(props),
+      }}
+    />
+  </>
+)
