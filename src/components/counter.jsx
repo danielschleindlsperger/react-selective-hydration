@@ -17,6 +17,6 @@ Counter.defaultProps = {
 }
 
 const CounterHydrationToken = 'Counter'
-const HydratableCounter = withHydration(Counter, CounterHydrationToken)
+const SSRCounter = withHydration(Counter, CounterHydrationToken)
 
-export { HydratableCounter as Counter, CounterHydrationToken }
+export { SSRCounter, Counter, CounterHydrationToken }
