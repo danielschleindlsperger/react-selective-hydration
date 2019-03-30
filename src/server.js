@@ -4,7 +4,7 @@ import Koa from 'koa'
 import serve from 'koa-static'
 import helmet from 'koa-helmet'
 import Router from 'koa-router'
-import { renderToString } from 'react-dom/server'
+import { renderToStaticMarkup } from 'react-dom/server'
 
 const assets = require(process.env.RAZZLE_ASSETS_MANIFEST)
 
@@ -16,7 +16,8 @@ router.get(
   '/*',
   (ctx, next) => {
     const context = {}
-    const markup = renderToString(<App />)
+    const data = { initialCount: 5 }
+    const markup = renderToStaticMarkup(<App {...data} />)
     ctx.state.markup = markup
     return context.url ? ctx.redirect(context.url) : next()
   },
@@ -28,19 +29,21 @@ router.get(
       <head>
           <meta http-equiv="X-UA-Compatible" content="IE=edge" />
           <meta charset="utf-8" />
-          <title>Welcome to Razzle + Koa</title>
+          <title>React Selective Hydration</title>
           <link rel="stylesheet" href="https://www.sueddeutsche.de/assets/contracts/fonts/fonts2017.css" />
           <meta name="viewport" content="width=device-width, initial-scale=1">
-          ${assets.client.css ? `<link rel="stylesheet" href="${assets.client.css}">` : ''}
+          ${
+            assets.client.css
+              ? `<link rel="stylesheet" href="${assets.client.css}">`
+              : ''
+          }
           ${
             process.env.NODE_ENV === 'production'
               ? `<script src="${assets.client.js}" defer></script>`
               : `<script src="${assets.client.js}" defer crossorigin></script>`
           }
       </head>
-      <body>
-          <div id="root">${ctx.state.markup}</div>
-      </body>
+      <body>${ctx.state.markup}</body>
     </html>`
   },
 )
